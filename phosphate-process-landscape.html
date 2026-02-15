@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phosphate Process - Landscape</title>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:auto;
+}
+
+h1{
+    text-align:center;
+    color:#fff;
+    margin:30px 0 10px 0;
+    font-size:38px;
+    letter-spacing:2px;
+}
+
+.process-wrapper{
+    width:1800px; /* Fixed landscape width */
+    margin:60px auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    perspective:1500px;
+}
+
+.tank{
+    width:140px;
+    height:180px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:0.5s ease;
+    box-shadow:0 25px 50px rgba(0,0,0,0.5);
+}
+
+.tank:hover{
+    transform:rotateY(15deg) rotateX(10deg) scale(1.1);
+}
+
+.tank-top{
+    position:absolute;
+    top:-18px;
+    left:15px;
+    width:110px;
+    height:22px;
+    background:#111;
+    border-radius:6px;
+}
+
+.liquid{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:65%;
+    border-radius:0 0 20px 20px;
+    animation:wave 3s infinite ease-in-out;
+}
+
+@keyframes wave{
+    0%{height:60%;}
+    50%{height:70%;}
+    100%{height:60%;}
+}
+
+.label{
+    position:absolute;
+    bottom:-50px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.step-number{
+    position:absolute;
+    top:-45px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#fff;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.arrow{
+    width:80px;
+    height:5px;
+    background:linear-gradient(to right,transparent,#fff);
+    position:relative;
+    animation:flow 2s infinite linear;
+}
+
+.arrow::after{
+    content:'';
+    position:absolute;
+    right:-12px;
+    top:-7px;
+    border-top:10px solid transparent;
+    border-bottom:10px solid transparent;
+    border-left:14px solid white;
+}
+
+@keyframes flow{
+    0%{opacity:0.3;}
+    50%{opacity:1;}
+    100%{opacity:0.3;}
+}
+
+/* Tank Colors */
+.degreasing .liquid{background:#ff6b81;}
+.rinse1 .liquid{background:#7bed9f;}
+.derusting .liquid{background:#70a1ff;}
+.rinse2 .liquid{background:#ced6e0;}
+.activation .liquid{background:#ffa502;}
+.phosphating .liquid{background:#a0522d;}
+.rinse3 .liquid{background:#f1f2b5;}
+.passivation .liquid{background:#747d8c;}
+
+</style>
+</head>
+<body>
+
+<h1>Phosphate Process</h1>
+
+<div class="process-wrapper">
+
+<div class="tank degreasing">
+<div class="step-number">1</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Degreasing</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank rinse1">
+<div class="step-number">2</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Water Rinse I</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank derusting">
+<div class="step-number">3</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Derusting</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank rinse2">
+<div class="step-number">4</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Water Rinse II</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank activation">
+<div class="step-number">5</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Surface Activation</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank phosphating">
+<div class="step-number">6</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Phosphating</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank rinse3">
+<div class="step-number">7</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Water Rinse III</div>
+</div>
+<div class="arrow"></div>
+
+<div class="tank passivation">
+<div class="step-number">8</div>
+<div class="tank-top"></div>
+<div class="liquid"></div>
+<div class="label">Passivation</div>
+</div>
+
+</div>
+
+<script>
+// Sequential Glow Effect
+const tanks = document.querySelectorAll(".tank");
+let i = 0;
+
+setInterval(()=>{
+    tanks.forEach(t => t.style.boxShadow="0 25px 50px rgba(0,0,0,0.5)");
+    tanks[i].style.boxShadow="0 0 50px #00f2ff";
+    i = (i+1) % tanks.length;
+},1500);
+</script>
+
+</body>
+</html>
